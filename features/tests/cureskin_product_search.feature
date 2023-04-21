@@ -7,6 +7,10 @@ Feature: Shop products
     When Close pop up window
     And Click on "Shop by product"
     And Select sunscreens
+<<<<<<< HEAD
+=======
+    Then Verify sun-protection header is shown
+>>>>>>> origin/main
     Then Verify the fist product is Sunscreen
 
 

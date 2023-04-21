@@ -26,6 +26,7 @@ def close_pop_up(context):
     # context.driver.find_element(By.CSS_SELECTOR, '.popup-close').click()
 
 
+<<<<<<< HEAD
 @then('Verify the fist product is {expected_result}')
 def verify_first_product(context, expected_result):
     context.app.search_results_page.verify_first_product(expected_result)
@@ -34,3 +35,13 @@ def verify_first_product(context, expected_result):
 # @then('Verify {expected_result} header is shown')
 # def verify_sun_protection_shown(context, expected_result):
 # context.app.search_results_page.verify_sun_protection_shown(expected_result)
+=======
+@then('Verify {expected_result} header is shown')
+def verify_sun_protection_shown(context, expected_result):
+    context.app.search_results_page.verify_sun_protection_shown(expected_result)
+
+
+@then('Verify the fist product is {expected_result}')
+def verify_first_product(context, expected_result):
+    context.app.search_results_page.verify_first_product(expected_result)
+>>>>>>> origin/main
