@@ -1,5 +1,5 @@
-from pages.main_page import MainPage
-from pages.header import Header
+from pages.main_page_page import MainPage
+from pages.header_page import Header
 from pages.search_results_page import SearchResults
 # from pages.terms_and_conditions_page import TermsAndConditions
 # from pages.cart_page import CartPage

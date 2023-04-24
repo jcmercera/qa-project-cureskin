@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import Select
 class MainPage(Page):
     POP_UP_WINDOW = (By.CSS_SELECTOR, '.popup-close')
 
-    def open_main_url(self):
+    def open_main_page(self):
         self.open_url('https://shop.cureskin.com/')
 
     def close_pop_up(self):
