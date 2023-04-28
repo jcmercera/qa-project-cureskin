@@ -8,5 +8,5 @@ Feature: #Search products
     And  Click on search icon
     And  Search for dummy product
     Then Verify No results returned on the drop-down
-    When Click on search
+    When Click on predictive search
     Then Verify No results found  message is shown

@@ -11,6 +11,7 @@ class Header(Page):
     SEARCH_FIELD = (By.CSS_SELECTOR, "input.search__input.field__input[aria-controls='predictive-search-results-list']")
     PREDICTIVE_SEARCH_ICON = (
     By.CSS_SELECTOR, 'button.predictive-search__item--term.button.button--small.button--full-width')
+    CART_ICON = (By.ID, 'cart-icon-bubble')
 
     #    HEADER_BLOCK =
     #    SIGN_IN_BUTTON =
@@ -24,11 +25,15 @@ class Header(Page):
         self.find_element(*self.SUNSCREENS).click()
 
     def click_on_search_icon(self, *locator):
-        self.find_element(*self.SEARCH_ICON).click()
+        self.wait_until_element_click(*self.SEARCH_ICON)
+        #self.find_element(*self.SEARCH_ICON).click()
 
-    def click_on_search(self, *locator):
+    def click_on_predict_search(self, *locator):
         self.find_element(*self.PREDICTIVE_SEARCH_ICON).click()
 
     def search_for_product(self, *product_name):
         self.find_element(*self.SEARCH_FIELD).click()
         self.input_text(product_name, *self.SEARCH_FIELD)
+
+    def go_to_cart(self, *locator):
+        self.driver.find_element(*self.CART_ICON).click()

@@ -3,7 +3,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
-
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import Select
 
 class Page:
 
@@ -52,6 +53,10 @@ class Page:
 
     def verify_url_contains_query(self, query):
         self.wait.until(EC.url_contains(query))
+
+    # noinspection PyArgumentList
+    def wait_until_element_click(self, *locator,):
+        self.wait.until(EC.presence_of_element_located(locator)).click()
 
     def store_original_window(self):
         self.original_window = self.driver.current_window_handle
