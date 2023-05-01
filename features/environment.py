@@ -1,35 +1,53 @@
 from selenium import webdriver
+from selenium.webdriver.firefox.service import Service as Firefox_Service
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome import service
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
-from behave import given, when, then
-
 from app.application import Application
+from selenium.webdriver.support.wait import WebDriverWait
+
+
+# def get_options():
+#     chrome_options = Options()
+#     chrome_options.add_argument("--window-size=1920,1080")
+#     chrome_options.add_argument("--start-maximized")
+#     chrome_options.add_argument("--headless")
+#     return chrome_options
 
 
 def browser_init(context):
     """
     :param context: Behave context
     """
-    context.driver = webdriver.Chrome(executable_path='/Users/JeiM/Documents/Automation/aqa_internship/chromedriver')
-    # service = Service('/Users/JeiM/Documents/Automation/python-selenium-automation/geckodriver')
+    # # Enable for Chrome
+    # context.driver = webdriver.Chrome(executable_path='/Users/JeiM/Documents/Automation/aqa_internship/chromedriver')
     # context.driver = webdriver.Chrome()
+
+    # # Enable for Firefox
+    service = Service('/Users/JeiM/Documents/Automation/aqa_internship/geckodriver')
     # context.driver = webdriver.Firefox(service=service)
+    #context.driver.set_window_size(2000, 694)
+
+    # # Enable for Safari
     # context.driver = webdriver.Safari()
-
     # context.browser = webdriver.Safari()
-    # context.browser = webdriver.Firefox()
 
-    ## HEADLESS MODE ####
+
+    ## Enable for Chrome HEADLESS ##
     # options = webdriver.ChromeOptions()
     # options.add_argument('--headless')
-    # context.driver = webdriver.Chrome(
-    #     chrome_options=options,
-    #     service=service
-    # )
+    # options.add_argument("--window-size=1920,1080")
+    # options.add_argument("--start-maximized")
+    # context.driver = webdriver.Chrome(chrome_options=options, service = Service('/Users/JeiM/Documents/Automation/aqa_internship/chromedriver'))
+
+    ## Enable for Firefox HEADLESS ##
+    options = webdriver.FirefoxOptions()
+    options.add_argument('--headless')
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--start-maximized")
+
+    context.driver = webdriver.Firefox(
+        options=options, service=service)
 
     ### EventFiringWebDriver - log file ###
     ### for drivers ###

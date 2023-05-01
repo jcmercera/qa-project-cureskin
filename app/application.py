@@ -17,7 +17,7 @@ class Application:
         self.search_results_page = SearchResults(self.driver)
         # self.terms_and_conditions_page = TermsAndConditions(self.driver)
         self.cart_page = CartPage(self.driver)
-        #self.product_page_page = ProductPage(self.driver)
+        # self.product_page_page = ProductPage(self.driver)
         # self.sign_in_page = SignInPage(self.driver)
         # self.footer = Footer(self.driver)
 

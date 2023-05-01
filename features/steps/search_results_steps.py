@@ -17,9 +17,8 @@ def add_first_product_to_cart(context):
 
 @when('Reduce the quantity of the product to zero')
 def reduce_item_from_side_cart(context):
+    sleep(2)
     context.app.cart_page.reduce_item_from_side_cart()
-
-
 
 
 @then('Verify {expected_result} header is shown')

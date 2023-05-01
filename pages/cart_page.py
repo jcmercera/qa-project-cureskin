@@ -6,6 +6,9 @@ from sample_script import driver
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class CartPage(Page):
@@ -17,9 +20,8 @@ class CartPage(Page):
         actions = ActionChains(self.driver)
         actions.move_to_element(quantity_button)
         actions.perform()
-        self.driver.find_element(*self.QUANT_MIN_BUTTON).click()
+        self.click(*self.QUANT_MIN_BUTTON)
 
     def verify_empty_cart(self):
         sleep(3)
         self.verify_text('Your cart is currently empty', *self.EMPTY_CART_TEXT)
-
