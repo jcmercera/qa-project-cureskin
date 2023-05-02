@@ -5,6 +5,7 @@ from selenium.webdriver.chrome import service
 from selenium.webdriver.chrome.service import Service
 from app.application import Application
 from selenium.webdriver.support.wait import WebDriverWait
+from support.logger import logger
 
 
 # def get_options():
@@ -15,7 +16,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 #     return chrome_options
 
 
-def browser_init(context):
+def browser_init(context, test_name):
     """
     :param context: Behave context
     """
@@ -24,9 +25,9 @@ def browser_init(context):
     # context.driver = webdriver.Chrome()
 
     # # Enable for Firefox
-    service = Service('/Users/JeiM/Documents/Automation/aqa_internship/geckodriver')
-    # context.driver = webdriver.Firefox(service=service)
-    #context.driver.set_window_size(2000, 694)
+    # service = Service('/Users/JeiM/Documents/Automation/aqa_internship/geckodriver')
+    # # context.driver = webdriver.Firefox(service=service)
+    # #context.driver.set_window_size(2000, 694)
 
     # # Enable for Safari
     # context.driver = webdriver.Safari()
@@ -41,13 +42,13 @@ def browser_init(context):
     # context.driver = webdriver.Chrome(chrome_options=options, service = Service('/Users/JeiM/Documents/Automation/aqa_internship/chromedriver'))
 
     ## Enable for Firefox HEADLESS ##
-    options = webdriver.FirefoxOptions()
-    options.add_argument('--headless')
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
+    # options = webdriver.FirefoxOptions()
+    # options.add_argument('--headless')
+    # options.add_argument("--window-size=1920,1080")
+    # options.add_argument("--start-maximized")
 
-    context.driver = webdriver.Firefox(
-        options=options, service=service)
+    # context.driver = webdriver.Firefox(
+    #     options=options, service=service)
 
     ### EventFiringWebDriver - log file ###
     ### for drivers ###
@@ -60,19 +61,20 @@ def browser_init(context):
 
     # for browerstack ###
     # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
-    bs_user = ''
-    bs_key = ''
 
-    # desired_cap = {
-    #     'browserName': 'Firefox',
-    #     'bstack:options': {
-    #         'os': 'Windows',
-    #         'osVersion': '10',
-    #         'sessionName': test_name
-    #     }
-    # }
-    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
+    desired_cap = {
+        'browserName': 'Firefox',
+        'bstack:options': {
+            'os': 'Windows',
+            'osVersion': '10',
+            'sessionName': test_name
+        }
+    }
+    bs_user = 'jcmercera_qM1LKj'
+    bs_key = '3VRzGqpPo8Xiz6azyqeY'
+
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
@@ -81,16 +83,19 @@ def browser_init(context):
 
 
 def before_scenario(context, scenario):
-    print('\nStarted scenario: ', scenario)
-    browser_init(context)
+    # print('\nStarted scenario: ', scenario)
+    logger.info(f'Started scenario:{scenario.name}')
+    browser_init(context, scenario.name)
 
 
 def before_step(context, step):
-    print('\nStarted step: ', step)
+    # print('\nStarted step: ', step)
+    logger.info(f'Started step: {step}')
 
 
 def after_step(context, step):
     if step.status == 'failed':
+        logger.error(f'Step failed: {step}')
         print('\nStep failed: ', step)
 
 

@@ -1,0 +1,23 @@
+2023-05-01 21:27:05,098 - support.logger - INFO - Started scenario:Update Cart Functionality
+2023-05-01 21:27:23,468 - support.logger - INFO - Started step: <given "Open main page">
+2023-05-01 21:27:29,100 - support.logger - INFO - Started step: <when "Close pop up window">
+2023-05-01 21:27:33,569 - support.logger - INFO - Started step: <when "Click on search icon">
+2023-05-01 21:27:35,192 - support.logger - INFO - Started step: <when "Search for sunscreen">
+2023-05-01 21:27:35,725 - support.logger - INFO - Started step: <when "Click on predictive search">
+2023-05-01 21:27:38,454 - support.logger - INFO - Started step: <when "Add the first product to Cart">
+2023-05-01 21:27:39,806 - support.logger - INFO - Started step: <when "Reduce the quantity of the product to zero">
+2023-05-01 21:27:42,925 - support.logger - INFO - Started step: <then "Verify that the cart is empty">
+2023-05-01 21:37:16,481 - support.logger - INFO - Started scenario:User can search for a product that doesn't exist
+2023-05-01 21:37:27,887 - support.logger - INFO - Started step: <given "Open main page">
+2023-05-01 21:37:33,333 - support.logger - INFO - Started step: <when "Close pop up window">
+2023-05-01 21:37:37,591 - support.logger - INFO - Started step: <when "Click on search icon">
+2023-05-01 21:37:39,435 - support.logger - INFO - Started step: <when "Search for dummy product">
+2023-05-01 21:37:39,960 - support.logger - INFO - Started step: <then "Verify No results returned on the drop-down">
+2023-05-01 21:37:40,589 - support.logger - INFO - Started step: <when "Click on predictive search">
+2023-05-01 21:37:43,570 - support.logger - INFO - Started step: <then "Verify No results found  message is shown">
+2023-05-01 21:39:53,614 - support.logger - INFO - Started scenario:User can shop by product Sunscreens
+2023-05-01 21:40:08,212 - support.logger - INFO - Started step: <given "Open main page">
+2023-05-01 21:40:13,306 - support.logger - INFO - Started step: <when "Close pop up window">
+2023-05-01 21:40:17,616 - support.logger - INFO - Started step: <when "Click on "Shop by product"">
+2023-05-01 21:40:20,208 - support.logger - INFO - Started step: <when "Select sunscreens">
+2023-05-01 21:40:21,975 - support.logger - INFO - Started step: <then "Verify the fist product is Sunscreen">
