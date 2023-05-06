@@ -16,23 +16,22 @@ from support.logger import logger
 #     return chrome_options
 
 
-def browser_init(context, test_name):
+def browser_init(context):
     """
     :param context: Behave context
     """
     # # Enable for Chrome
     # context.driver = webdriver.Chrome(executable_path='/Users/JeiM/Documents/Automation/aqa_internship/chromedriver')
-    # context.driver = webdriver.Chrome()
+    #context.driver = webdriver.Chrome()
 
-    # # Enable for Firefox
+    # Enable for Firefox
     # service = Service('/Users/JeiM/Documents/Automation/aqa_internship/geckodriver')
-    # # context.driver = webdriver.Firefox(service=service)
-    # #context.driver.set_window_size(2000, 694)
+    # context.driver = webdriver.Firefox(service=service)
+    # context.driver.set_window_size(2000, 694)
 
     # # Enable for Safari
     # context.driver = webdriver.Safari()
     # context.browser = webdriver.Safari()
-
 
     ## Enable for Chrome HEADLESS ##
     # options = webdriver.ChromeOptions()
@@ -59,22 +58,32 @@ def browser_init(context, test_name):
     # for headless mode ###
     # context.driver = EventFiringWebDriver(webdriver.Chrome(chrome_options = options), MyListener())
 
-    # for browerstack ###
+    # BROWSERSTACK ###
     # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
 
-    desired_cap = {
-        'browserName': 'Firefox',
-        'bstack:options': {
-            'os': 'Windows',
-            'osVersion': '10',
-            'sessionName': test_name
-        }
-    }
-    bs_user = 'jcmercera_qM1LKj'
-    bs_key = '3VRzGqpPo8Xiz6azyqeY'
+    # desired_cap = {
+    #     'browserName': 'Firefox',
+    #     'bstack:options': {
+    #         'os': 'Windows',
+    #         'osVersion': '10',
+    #         'sessionName': ''
+    #     }
+    # }
+    # bs_user = 'jcmercera_qM1LKj'
+    # bs_key = '3VRzGqpPo8Xiz6azyqeY'
+    #
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
 
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
+    ## FOR MOBILE APPS ##
+
+    mobile_emulation = {"deviceName": "iPhone 12 Pro"}
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    context.driver = webdriver.Chrome(executable_path='/Users/JeiM/Documents/Automation/aqa_internship/chromedriver', chrome_options=chrome_options)
+
+####################################################
+
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
@@ -83,19 +92,17 @@ def browser_init(context, test_name):
 
 
 def before_scenario(context, scenario):
-    # print('\nStarted scenario: ', scenario)
-    logger.info(f'Started scenario:{scenario.name}')
-    browser_init(context, scenario.name)
+    print('\nStarted scenario: ', scenario)
+    browser_init(context)
 
 
 def before_step(context, step):
-    # print('\nStarted step: ', step)
-    logger.info(f'Started step: {step}')
+    print('\nStarted step: ', step)
 
 
 def after_step(context, step):
     if step.status == 'failed':
-        logger.error(f'Step failed: {step}')
+        # logger.error(f'Step failed: {step}')
         print('\nStep failed: ', step)
 
 
